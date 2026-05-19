@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK Jenga Hub | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#0B1A30',
+                        brandBlueLight: '#1E3A8A',
+                        brandOrange: '#F97316',
+                        brandWhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; overflow-x: hidden; }
+        
+        /* 3D Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 3D Hero Element */
+        .hero-3d-bg {
+            background: linear-gradient(135deg, #0B1A30 0%, #1E3A8A 100%);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            background: rgba(249, 115, 22, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.2), 
+                        inset 1px 1px 2px rgba(255,255,255,0.3);
+        }
+        
+        .shape-1 { width: 300px; height: 300px; top: 10%; right: 5%; animation-delay: 0s; transform: translateZ(50px) rotateY(15deg); border: 2px solid rgba(249, 115, 22, 0.3); }
+        .shape-2 { width: 200px; height: 200px; bottom: 10%; left: 10%; animation-delay: -3s; transform: translateZ(100px) rotateX(20deg); border: 2px solid rgba(30, 58, 138, 0.5); }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateZ(50px) rotateY(10deg); }
+            50% { transform: translateY(-30px) translateZ(80px) rotateY(-10deg); }
+            100% { transform: translateY(0px) translateZ(50px) rotateY(10deg); }
+        }
+
+        /* 3D Card Hover Effects */
+        .card-3d {
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: 25px 25px 50px rgba(0,0,0,0.1), 
+                        -10px -10px 30px rgba(255,255,255,0.8);
+        }
+        .card-icon-3d {
+            transition: transform 0.5s ease;
+        }
+        .card-3d:hover .card-icon-3d {
+            transform: translateZ(50px) scale(1.1);
+        }
+
+        /* 3D Button */
+        .btn-3d {
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 0 #c2410c, 0 15px 20px rgba(0,0,0,0.2);
+            transform: translateY(0);
+        }
+        .btn-3d:hover {
+            box-shadow: 0 6px 0 #c2410c, 0 10px 15px rgba(0,0,0,0.2);
+            transform: translateY(2px);
+        }
+        .btn-3d:active {
+            box-shadow: 0 0 0 #c2410c, 0 0 0 rgba(0,0,0,0.2);
+            transform: translateY(8px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50 transition-all duration-300 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="logo.jpeg" alt="SK Jenga Hub Logo" class="h-12 w-auto object-contain rounded">
+                    <span class="font-extrabold text-2xl text-brandBlue tracking-tight drop-shadow-sm">SK Jenga Hub</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="text-brandBlue font-bold border-b-2 border-brandOrange">Home</a>
+                <a href="services.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Services</a>
+                <a href="gallery.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Gallery</a>
+                <a href="contact.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Contact Us</a>
+                <a href="apply.html" class="bg-brandOrange text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-orange-600 transition hover:-translate-y-1">Get Verified</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-3d-bg pt-32 pb-32 px-4 sm:px-6 relative overflow-hidden">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-2xl" style="transform: translateZ(30px);">
+                The Trust Infrastructure for <span class="text-brandOrange inline-block transform hover:scale-105 transition duration-300">Kenyan Construction</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto font-light drop-shadow-md">
+                Bridging the gap. We connect premium project owners with verified, authentic contractors. Build with absolute transparency and topnotch creativity.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="apply.html" class="btn-3d bg-brandOrange text-white px-10 py-4 rounded-xl font-bold text-lg w-full sm:w-auto text-center">
+                    I am a Contractor
+                </a>
+                <a href="apply.html#owner" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brandBlue px-10 py-4 rounded-xl font-bold text-lg transition-all w-full sm:w-auto text-center shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    I am a Project Owner
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Feature Cards Section -->
+    <section class="py-24 px-4 bg-archGray relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-brandBlue mb-4 drop-shadow-sm">Why Choose SK Jenga Hub?</h2>
+                <div class="w-24 h-1.5 bg-brandOrange mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="card-3d bg-white p-8 rounded-2xl border border-slate-100" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-tilt-scale="1.05">
+                    <div class="card-icon-3d bg-blue-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-inner" style="transform: translateZ(30px);">
+                        <i class="fa-solid fa-shield-halved text-4xl text-brandBlueLight"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brandBlue mb-3" style="transform: translateZ(20px);">Authentic Trust</h3>
+                    <p class="text-slate-600" style="transform: translateZ(10px);">Every contractor undergoes a rigorous verification process. We ensure only qualified and transparent professionals handle your project.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card-3d bg-white p-8 rounded-2xl border border-slate-100" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-tilt-scale="1.05">
+                    <div class="card-icon-3d bg-orange-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-inner" style="transform: translateZ(30px);">
+                        <i class="fa-solid fa-bridge text-4xl text-brandOrange"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brandBlue mb-3" style="transform: translateZ(20px);">Bridging the Gap</h3>
+                    <p class="text-slate-600" style="transform: translateZ(10px);">Seamlessly connecting property owners with the best builders. We eliminate the middlemen and foster direct, secure communications.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-3d bg-white p-8 rounded-2xl border border-slate-100" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-tilt-scale="1.05">
+                    <div class="card-icon-3d bg-blue-50 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-inner" style="transform: translateZ(30px);">
+                        <i class="fa-solid fa-cube text-4xl text-brandBlue"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brandBlue mb-3" style="transform: translateZ(20px);">Topnotch Creativity</h3>
+                    <p class="text-slate-600" style="transform: translateZ(10px);">Access structural designers and architectural firms delivering stunning, resilient, and amazing 3D concepts for your future home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brandBlue text-white py-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center relative z-10">
+            <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                <img src="logo.jpeg" alt="SK Jenga Hub Logo" class="h-10 w-auto object-contain rounded">
+                <span class="font-bold text-2xl tracking-tight">SK Jenga Hub</span>
+            </div>
+            <p class="text-blue-200 text-sm">Bridging the gap with strength & authenticity.</p>
+            <div class="mt-4 md:mt-0 text-sm text-blue-200">
+                &copy; 2026 SK Jenga Hub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

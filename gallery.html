@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK Jenga Hub | 3D Interactive Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brandBlue: '#0B1A30', brandOrange: '#F97316' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; overflow-x: hidden; }
+        .glass-nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid #e2e8f0; }
+        
+        /* 3D Flip Card Container */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1500px;
+            height: 450px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 1.5rem;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        /* Front: Blueprint */
+        .flip-card-front {
+            background-color: #ffffff;
+            color: #0B1A30;
+            border: 2px solid #e2e8f0;
+        }
+
+        /* Back: Finished Product */
+        .flip-card-back {
+            background-color: #0B1A30;
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid #F97316;
+        }
+
+        .img-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(11,26,48,0.95), rgba(11,26,48,0));
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            text-align: left;
+        }
+
+        .dimension-badge {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(249, 115, 22, 0.9);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-weight: bold;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav fixed w-full z-50 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
+            <a href="index.html" class="font-extrabold text-2xl text-brandBlue flex items-center gap-2">
+                <img src="logo.jpeg" alt="Logo" class="h-10 w-auto object-contain rounded"> SK Jenga Hub
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Home</a>
+                <a href="services.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Services</a>
+                <a href="gallery.html" class="text-brandBlue font-bold border-b-2 border-brandOrange">Gallery</a>
+                <a href="contact.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Contact Us</a>
+                <a href="apply.html" class="bg-brandOrange text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-orange-600 transition">Get Verified</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="bg-orange-100 text-brandOrange px-4 py-1 rounded-full font-bold text-sm tracking-wider uppercase mb-4 inline-block">Interactive 3D Experience</span>
+            <h1 class="text-5xl font-extrabold text-brandBlue mb-4">From Blueprint to Reality</h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">Hover over any architectural blueprint to instantly flip the card and reveal the breathtaking, photorealistic finished build. Smart, elegant, and perfectly dimensioned.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- 1. Luxury Villa -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">450 Sqm | 5 Beds</div>
+                        <img src="images/villa_plan.png" alt="Villa Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Luxury Villa Floor Plan</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view built exterior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/villa_real.png" alt="Built Villa" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Built Luxury Villa</h3>
+                            <p class="text-blue-200 text-sm">Features glass walls and a glowing pool.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Modern Restaurant Kitchen -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">80 Sqm | Comm. Grade</div>
+                        <img src="images/kitchen_plan.png" alt="Kitchen Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Restaurant Kitchen Layout</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view finished interior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/kitchen_real.png" alt="Built Kitchen" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Professional Kitchen</h3>
+                            <p class="text-blue-200 text-sm">Stainless steel, high-end finishing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Modern Office -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">300 Sqm | Open Plan</div>
+                        <img src="images/office_plan.png" alt="Office Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Modern Office Floor Plan</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view finished interior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/office_real.png" alt="Built Office" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Smart Office Interior</h3>
+                            <p class="text-blue-200 text-sm">Glass partitions and ergonomic design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Swahili House -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">120 Sqm | Courtyard</div>
+                        <img src="images/swahili_plan.png" alt="Swahili Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Swahili House Design</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view built exterior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/swahili_real.png" alt="Built Swahili" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Coastal Swahili House</h3>
+                            <p class="text-blue-200 text-sm">Makuti roof and carved wooden doors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Modern Bedsitter -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">25 Sqm | Studio</div>
+                        <img src="images/bedsitter_plan.png" alt="Bedsitter Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Compact Bedsitter Plan</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view finished interior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/bedsitter_real.png" alt="Built Bedsitter" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Elegant Studio Interior</h3>
+                            <p class="text-blue-200 text-sm">Smart, multi-functional layout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Single Room -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="dimension-badge">16 Sqm | Standard</div>
+                        <img src="images/single_plan.png" alt="Single Room Blueprint" class="w-full h-full object-cover opacity-90">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Single Room Specs</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-pen-ruler mr-2"></i>Hover to view finished interior</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="images/single_real.png" alt="Built Single Room" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Cozy Single Room</h3>
+                            <p class="text-blue-200 text-sm">Clean, well-lit, and beautiful.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Gypsum Ceilings (Static Hover Effect instead of Flip since no plan needed) -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/gypsum_real.png" alt="Gypsum Design" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Modern Gypsum Design</h3>
+                            <p class="text-blue-200 text-sm"><i class="fa-solid fa-lightbulb mr-2"></i>Intricate lighting & finishes</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back" style="border-color: #0B1A30;">
+                        <img src="images/gypsum_real.png" alt="Gypsum Design" class="w-full h-full object-cover">
+                        <div class="img-overlay">
+                            <h3 class="text-2xl font-bold text-white mb-1">Modern Gypsum Design</h3>
+                            <p class="text-brandOrange text-sm font-bold">Finished Work Showcase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="text-center mt-20">
+            <h3 class="text-2xl font-bold text-brandBlue mb-6">Want to bring one of these blueprints to life?</h3>
+            <a href="apply.html#owner" class="inline-block bg-brandOrange text-white px-10 py-5 rounded-full font-bold text-lg shadow-[0_10px_30px_rgba(249,115,22,0.4)] hover:bg-orange-600 hover:shadow-[0_15px_40px_rgba(249,115,22,0.6)] transition-all transform hover:-translate-y-2">
+                Book a Contractor Today
+            </a>
+        </div>
+    </section>
+</body>
+</html>
