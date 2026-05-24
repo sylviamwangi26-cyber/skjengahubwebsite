@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK Jenga Hub | 3D Interactive Gallery</title>
+    <title>SKS Jenga Hub | 3D Interactive Gallery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -95,7 +95,7 @@
     <nav class="glass-nav fixed w-full z-50 h-20 flex items-center">
         <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
             <a href="index.html" class="font-extrabold text-2xl text-brandBlue flex items-center gap-2">
-                <img src="logo.jpeg" alt="Logo" class="h-10 w-auto object-contain rounded"> SK Jenga Hub
+                <img src="logo.jpeg" alt="Logo" class="h-10 w-auto object-contain rounded"> SKS Jenga Hub
             </a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="index.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Home</a>
@@ -104,8 +104,24 @@
                 <a href="contact.html" class="text-slate-600 hover:text-brandBlue font-medium transition">Contact Us</a>
                 <a href="apply.html" class="bg-brandOrange text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-orange-600 transition">Get Verified</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-brandBlue focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-3xl"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-8 overflow-y-auto">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-brandBlue focus:outline-none p-2">
+            <i class="fa-solid fa-xmark text-4xl"></i>
+        </button>
+        <a href="index.html" class="text-2xl font-bold text-slate-700 mb-6">Home</a>
+        <a href="services.html" class="text-2xl font-bold text-slate-700 mb-6">Services</a>
+        <a href="gallery.html" class="text-2xl font-bold text-brandBlue mb-6 border-b-2 border-brandOrange pb-2 w-max">Gallery</a>
+        <a href="contact.html" class="text-2xl font-bold text-slate-700 mb-6">Contact Us</a>
+        <a href="apply.html" class="bg-brandOrange text-white text-center py-4 rounded-xl font-bold text-xl mt-4 shadow-lg">Get Verified</a>
+    </div>
 
     <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-16">
@@ -271,5 +287,21 @@
             </a>
         </div>
     </section>
+
+    <script>
+        // Mobile Menu Script
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if(mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        }
+    </script>
 </body>
 </html>

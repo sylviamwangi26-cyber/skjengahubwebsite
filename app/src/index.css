@@ -9,3 +9,15 @@
     @apply bg-archGray text-slate-800 font-sans antialiased;
   }
 }
+
+@keyframes letterMove {
+  0% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+  20%, 80% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(20px) scale(1.2); }
+}
+
+.animate-letter {
+  display: inline-block;
+  animation: letterMove 5s infinite ease-in-out;
+  animation-fill-mode: both;
+}

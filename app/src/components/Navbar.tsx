@@ -12,7 +12,7 @@ const Navbar = () => {
               <div className="bg-trustBlue p-2 rounded">
                 <HardHat className="h-6 w-6 text-white" />
               </div>
-              <span className="font-bold text-xl text-trustBlue tracking-tight">SK Jenga Hub</span>
+              <span className="font-bold text-xl text-trustBlue tracking-tight">SKS JENGA HUB</span>
             </Link>
             <div className="hidden md:flex items-center bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
               <ShieldCheck className="h-4 w-4 text-trustBlueLight mr-1" />

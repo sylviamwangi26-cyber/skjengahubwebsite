@@ -2,16 +2,48 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Building2, Camera, FileCheck, MapPin } from 'lucide-react';
 
+const AnimatedText = ({ text }: { text: string }) => {
+  // Simple counter for continuous delay
+  let delay = 0;
+  return (
+    <div className="flex flex-wrap justify-center mt-2 mb-6 text-xl md:text-2xl font-bold text-constructionOrange tracking-wider">
+      {text.split(' ').map((word, wordIndex) => (
+        <div key={wordIndex} className="flex mr-2 md:mr-3">
+          {word.split('').map((char, charIndex) => {
+            const currentDelay = delay;
+            delay += 0.1;
+            return (
+              <span
+                key={charIndex}
+                className="animate-letter"
+                style={{ animationDelay: `${currentDelay}s` }}
+              >
+                {char}
+              </span>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Home = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-trustBlue py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background Logo Overlay */}
+        <div 
+          className="absolute inset-0 opacity-5 bg-center bg-no-repeat bg-contain"
+          style={{ backgroundImage: 'url(/icons.svg)' }}
+        ></div>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            The Trust Infrastructure for Kenyan Construction.
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-2 tracking-tight">
+            SKS JENGA HUB
           </h1>
+          <AnimatedText text="TURNING YOUR DREAM HOME INTO REALITY" />
           <p className="text-xl text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
             We connect premium property owners with verified contractors, structural design firms, and regulatory approval experts. Build with absolute transparency.
           </p>
